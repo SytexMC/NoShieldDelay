@@ -38,13 +38,13 @@ body:
       label: Checklist
       description: Please agree to the following.
       options:
-        - label: I am running the latest version of the noShieldDelay.
+        - label: I am running the latest version of NoShieldDelay.
           required: true
         - label: I have searched for and ensured there isn't already an open issue regarding this.
           required: true
         - label: I ticked all the boxes without actually reading them.
           required: false
-        - label: My server software & version is supported by this noShieldDelay.
+        - label: My server software & version is supported by NoShieldDelay.
           required: true
         - label: I am willing to cooperate to get this issue resolved faster, including providing any additional information requested or testing new builds
           required: true
