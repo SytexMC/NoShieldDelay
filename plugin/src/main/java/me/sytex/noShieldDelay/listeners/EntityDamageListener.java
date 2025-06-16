@@ -20,10 +20,12 @@
 
 package me.sytex.noShieldDelay.listeners;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.util.Vector;
 
 public class EntityDamageListener implements Listener {
@@ -35,6 +37,10 @@ public class EntityDamageListener implements Listener {
     Player player = (Player) event.getEntity();
 
     if (player.isBlocking() || !player.isHandRaised()) return;
+
+    PlayerInventory inventory = player.getInventory();
+
+    if (inventory.getItemInMainHand().getType() != Material.SHIELD && inventory.getItemInOffHand().getType() != Material.SHIELD) return;
 
     Vector facing = player.getLocation().getDirection().normalize();
     Vector relative = event.getDamager().getLocation().getDirection().normalize();
