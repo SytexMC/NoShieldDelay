@@ -7,14 +7,8 @@
   <a target="_blank" href="https://www.gnu.org/licenses/gpl-3.0.txt"><img alt="Badge" src="https://img.shields.io/badge/License-GPL v3-%2327ae60?style=for-the-badge"></a>
 
   <p>
-  Ever raised your shield to block an attack, watched the animation play, but still took damage?
-  <br>It’s not lag - Minecraft has a hidden 5-tick delay before shields actually start blocking.  
-  <br>This plugin removes that delay server-side, making shields more responsive.
+    Ever raised your shield to block an attack, watched the animation play, but still took damage?
+    <br>It’s not lag - Minecraft has a hidden 5-tick delay before shields actually start blocking.  
+    <br>This plugin removes that delay server-side, making shields more responsive.
   </p>
-
-  <br>
-
-  <a target="_blank" href="https://modrinth.com/plugin/noshielddelay"><img alt="modrinth" height="35" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg"></a>
-  <a target="_blank" href="https://hangar.papermc.io/SytexMC/NoShieldDelay"><img alt="hangar" height="35" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/hangar_vector.svg"></a>
-  <a target="_blank" href="https://www.spigotmc.org/resources/no-shield-delay.125999/"><img alt="spigot" height="35" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/supported/spigot_vector.svg"></A>
 </div>
