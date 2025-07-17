@@ -20,7 +20,10 @@
 
 package me.sytex.noShieldDelay.listeners;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,7 +33,8 @@ import org.bukkit.util.Vector;
 
 public class EntityDamageListener implements Listener {
 
-  private static final double BLOCK_ANGLE_THRESHOLD = Math.toRadians(90);
+  // Maximum angle (in degrees) to still consider attacker as 'in front of' player
+  private static final double BLOCK_ANGLE_THRESHOLD = 90;
 
   @EventHandler
   public void onEntityDamage(EntityDamageByEntityEvent event) {
@@ -44,13 +48,26 @@ public class EntityDamageListener implements Listener {
 
     if (inventory.getItemInMainHand().getType() != Material.SHIELD && inventory.getItemInOffHand().getType() != Material.SHIELD) return;
 
-    Vector facing = player.getLocation().getDirection().normalize();
-    Vector relative = event.getDamager().getLocation().getDirection().normalize();
+    Location playerEye = player.getEyeLocation();
+    Location attackerEye = getEntityEyeLocation(event.getDamager());
 
-    double angle = facing.angle(relative);
+    Vector facing = playerEye.getDirection().normalize();
+    Vector direction = attackerEye.subtract(playerEye).toVector().normalize();
 
-    if (BLOCK_ANGLE_THRESHOLD >= angle) return;
+    double angle = facing.angle(direction);
+    double degrees = Math.toDegrees(angle);
+
+    if (degrees > BLOCK_ANGLE_THRESHOLD) return;
 
     event.setCancelled(true);
+  }
+
+  private Location getEntityEyeLocation(Entity entity) {
+    if (entity instanceof LivingEntity) {
+      LivingEntity livingEntity = (LivingEntity) entity;
+      return livingEntity.getEyeLocation();
+    } else {
+      return entity.getLocation();
+    }
   }
 }
