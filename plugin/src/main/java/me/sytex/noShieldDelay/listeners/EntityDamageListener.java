@@ -30,6 +30,8 @@ import org.bukkit.util.Vector;
 
 public class EntityDamageListener implements Listener {
 
+  private static final double BLOCK_ANGLE_THRESHOLD = Math.toRadians(90);
+
   @EventHandler
   public void onEntityDamage(EntityDamageByEntityEvent event) {
     if (!(event.getEntity() instanceof Player)) return;
@@ -46,9 +48,8 @@ public class EntityDamageListener implements Listener {
     Vector relative = event.getDamager().getLocation().getDirection().normalize();
 
     double angle = facing.angle(relative);
-    double threshold = Math.toRadians(90);
 
-    if (threshold >= angle) return;
+    if (BLOCK_ANGLE_THRESHOLD >= angle) return;
 
     event.setCancelled(true);
   }
