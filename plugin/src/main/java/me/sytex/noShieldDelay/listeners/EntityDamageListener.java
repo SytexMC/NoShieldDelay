@@ -46,7 +46,7 @@ public class EntityDamageListener implements Listener {
 
     PlayerInventory inventory = player.getInventory();
 
-    if (inventory.getItemInMainHand().getType() != Material.SHIELD && inventory.getItemInOffHand().getType() != Material.SHIELD) return;
+    if ((inventory.getItemInMainHand().getType() != Material.SHIELD && inventory.getItemInOffHand().getType() != Material.SHIELD) || inventory.getItemInMainHand().getType().isEdible()) return;
 
     Location playerEye = player.getEyeLocation();
     Location attackerEye = getEntityEyeLocation(event.getDamager());
