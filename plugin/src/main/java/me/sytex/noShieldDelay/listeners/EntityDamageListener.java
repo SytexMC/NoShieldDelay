@@ -38,15 +38,23 @@ public class EntityDamageListener implements Listener {
 
   @EventHandler
   public void onEntityDamage(EntityDamageByEntityEvent event) {
-    if (!(event.getEntity() instanceof Player)) return;
+    if (!(event.getEntity() instanceof Player)) {
+      return;
+    }
 
     Player player = (Player) event.getEntity();
 
-    if (player.isBlocking() || !player.isHandRaised()) return;
+    if (player.isBlocking() || !player.isHandRaised()) {
+      return;
+    }
 
     PlayerInventory inventory = player.getInventory();
 
-    if ((inventory.getItemInMainHand().getType() != Material.SHIELD && inventory.getItemInOffHand().getType() != Material.SHIELD) || inventory.getItemInMainHand().getType().isEdible()) return;
+    if ((inventory.getItemInOffHand().getType() != Material.SHIELD
+        && inventory.getItemInMainHand().getType() != Material.SHIELD)
+        || inventory.getItemInMainHand().getType().isEdible()) {
+      return;
+    }
 
     Location playerEye = player.getEyeLocation();
     Location attackerEye = getEntityEyeLocation(event.getDamager());
@@ -57,7 +65,9 @@ public class EntityDamageListener implements Listener {
     double angle = facing.angle(direction);
     double degrees = Math.toDegrees(angle);
 
-    if (degrees > BLOCK_ANGLE_THRESHOLD) return;
+    if (degrees > BLOCK_ANGLE_THRESHOLD) {
+      return;
+    }
 
     event.setCancelled(true);
   }
